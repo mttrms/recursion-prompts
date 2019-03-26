@@ -30,7 +30,6 @@ var sum = function(array) {
 var arraySum = function(array) {
   let sum = 0;
   for (let i = 0; i < array.length; i++) {
-  
     if (Array.isArray(array[i])) {
       sum += arraySum(array[i]);
     } else {
@@ -55,11 +54,21 @@ var isEven = function(n) {
 // sumBelow(10); // 45
 // sumBelow(7); // 21
 var sumBelow = function(n) {
+  if (n === 0) {
+    return 0;
+  }
+  return n - 1 + sumBelow(n - 1)
 };
 
 // 6. Get the integers within a range (x, y).
 // range(2,9); // [3,4,5,6,7,8]
 var range = function(x, y) {
+  if (y - x === 2) {
+    return [y - 1];
+  }
+    let list = range(x, y - 1);
+    list.push(y - 1);
+    return list;
 };
 
 // 7. Compute the exponent of a number.
@@ -68,6 +77,10 @@ var range = function(x, y) {
 // exponent(4,3); // 64
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
 var exponent = function(base, exp) {
+  if (exp === 1) {
+    return base;
+  }
+  return base * exponent(base, exp - 1);
 };
 
 // 8. Determine if a number is a power of two.
@@ -75,10 +88,21 @@ var exponent = function(base, exp) {
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
 var powerOfTwo = function(n) {
+  if (n === 1) {
+    return true;
+  } else if (n < 1) {
+    return false;
+  }
+  return powerOfTwo(n / 2);
 };
 
 // 9. Write a function that reverses a string.
 var reverse = function(string) {
+  if (string === '') {
+    return '';
+  } else {
+    return reverse(string.substring(1)) + string.charAt(0)
+  }
 };
 
 // 10. Write a function that determines if a string is a palindrome.
